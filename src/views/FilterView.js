@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import TableHOC from '../components/Table/TableHOC';
 
 const FilterView = () => {
-  return (
-    <div>FilterView</div>
-  )
-}
+  return <TableHOC />;
+};
 
-export default FilterView
+export default FilterView;

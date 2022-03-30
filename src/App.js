@@ -4,7 +4,7 @@ import FilterViewHOC from './views/FilterViewHOC';
 function App() {
   return (
     <div className="App">
-      <FilterViewHOC/>
+      <FilterViewHOC />
     </div>
   );
 }

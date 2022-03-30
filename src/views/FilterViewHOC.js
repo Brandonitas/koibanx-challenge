@@ -3,9 +3,7 @@ import FilterView from './FilterView';
 import './FilterView.scss';
 
 const FIlterViewHOC = () => {
-  return (
-    <FilterView/>
-  )
-}
+  return <FilterView />;
+};
 
-export default FIlterViewHOC
+export default FIlterViewHOC;
