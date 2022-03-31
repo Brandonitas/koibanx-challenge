@@ -5,13 +5,13 @@ const baseApiClient = axios.create({
   baseURL: API,
 });
 
-/*apiClient acting like response interceptor*/
+// apiClient acting like response interceptor
 const apiClient = ({ ...options }) => {
   const onSuccess = (response) => response;
 
   const onError = async (error) => {
     const originalRequest = error.config;
-    /* Here we can handle errors */
+    // Here we can handle errors
   };
 
   return baseApiClient(options).then(onSuccess).catch(onError);

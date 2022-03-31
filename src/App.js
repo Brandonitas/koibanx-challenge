@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import FilterViewHOC from './views/FilterViewHOC';
+import CompanyDataView from './views/CompanyDataView';
 
 function App() {
   return (
     <div className="App">
-      <FilterViewHOC />
+      <CompanyDataView />
     </div>
   );
 }

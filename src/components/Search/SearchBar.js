@@ -1,30 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Popover, Button } from 'antd';
-import useFilters from '../CustomHooks/useFilters';
 
-const SearchBar = () => {
-  const [filters, { handleSearchInput, handleChangeStatus }] =
-    useFilters();
-
-  const getData = () => {
-    console.log('SUBMIT', filters);
-  };
-
-  useEffect(() => {
-    let filtersIsEmpty = true;
-    Object.entries(filters).forEach((filter) => {
-      if (filter[1] !== '') {
-        filtersIsEmpty = false;
-      }
-    });
-
-    if (!filtersIsEmpty) {
-      console.log('SEARCH WITH PARAMS');
-    } else {
-      console.log('SEARCH EMPTY');
-    }
-  }, [filters]);
-
+const SearchBar = ({
+  filters,
+  handleSearchInput,
+  handleChangeStatus,
+}) => {
   const applyFilter = (e) => {
     const { value } = e.target;
     const {
@@ -35,11 +16,6 @@ const SearchBar = () => {
     } else if (id === 'no-active' || id === 'active') {
       handleChangeStatus(id);
     }
-  };
-
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    getData();
   };
 
   const [timer, setTimer] = useState(null);
@@ -88,19 +64,17 @@ const SearchBar = () => {
 
   return (
     <div>
-      <form onSubmit={onFormSubmit}>
-        <input
-          onChange={changeDelay}
-          type="text"
-          autoComplete="off"
-          id="search-value"
-          placeholder="Search"
-          className=""
-        />
-        <Popover placement="bottom" content={content} trigger="click">
-          <Button>Filtros</Button>
-        </Popover>
-      </form>
+      <input
+        onChange={changeDelay}
+        type="text"
+        autoComplete="off"
+        id="search-value"
+        placeholder="Search"
+        className=""
+      />
+      <Popover placement="bottom" content={content} trigger="click">
+        <Button>Filtros</Button>
+      </Popover>
     </div>
   );
 };
