@@ -1,9 +1,15 @@
 import React from 'react';
+import SearchBarHOC from '../components/Search/SearchBarHOC';
 import FilterView from './FilterView';
 import './FilterView.scss';
 
-const FIlterViewHOC = () => {
-  return <FilterView />;
+const FilterViewHOC = () => {
+  return (
+    <>
+      <SearchBarHOC />
+      <FilterView />
+    </>
+  );
 };
 
-export default FIlterViewHOC;
+export default FilterViewHOC;
