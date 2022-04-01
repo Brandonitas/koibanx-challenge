@@ -5,9 +5,6 @@ export const buildFiltersFormData = (body) => {
     if (value !== '') {
       if (key === 'search') {
         tempBody[key] = { $regex: value };
-      }
-      if (key === 'comercio' || key === 'cuit') {
-        tempBody[key] = { $regex: value };
       } else {
         tempBody[key] = value;
       }
@@ -16,7 +13,17 @@ export const buildFiltersFormData = (body) => {
   return JSON.stringify(tempBody);
 };
 
-export const buildSortFormData = (body) => {};
+export const buildSortFormData = (body) => {
+  const tempBody = { $orderby: {} };
+  Object.entries(body).forEach((element) => {
+    const [key, value] = element;
+    if (value !== '') {
+      console.log('element', element);
+      tempBody.$orderby[key] = value;
+    }
+  });
+  return JSON.stringify(tempBody);
+};
 
 // q={"$or":[{"search":{"$regex”: ”basic"}},{"search":{"$regex”: ”basic"}},{"search":{"$regex”: ”basic"}}]}
 // q={"search":{"$regex”: ”basic"}}
