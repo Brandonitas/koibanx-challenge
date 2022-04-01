@@ -23,7 +23,6 @@ const CompanyDataView = () => {
   const [hasMoreData, setHasMoreData] = useState(false);
 
   const getData = async (queryFilters, querySortBy) => {
-    console.log('SUBMIT', queryFilters, querySortBy);
     const { data } = await GET_COMMERCIAL_DATA(
       queryFilters,
       querySortBy
@@ -51,6 +50,7 @@ const CompanyDataView = () => {
       />
       <TableHOC
         filters={filters}
+        sortBy={sortBy}
         companyData={companyData}
         handleUpdatePage={handleUpdatePage}
         hasMoreData={hasMoreData}
