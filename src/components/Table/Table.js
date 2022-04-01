@@ -1,41 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid';
 import useFilters from '../CustomHooks/useFilters';
 
-const Table = () => {
+const Table = ({ companyData }) => {
+  const [columnNames, setColumnNames] = useState([]);
+
+  const handleGetKeys = () => {};
+
+  useEffect(() => {
+    if (companyData) {
+      const columns = Object.keys(companyData[0]);
+      setColumnNames(columns);
+    }
+  }, [companyData]);
+
+  const RenderRow = ({ row, indexRow }) => {
+    return columnNames.map((key, index) => {
+      return <td key={nanoid(5)}>{row[key]}</td>;
+    });
+  };
+
   return (
-    <table className="table-fixed">
+    <table className="table-container table-fixed">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Comercio</th>
-          <th>CUIT</th>
-          <th>Concepto 1</th>
-          <th>Concepto 2</th>
-          <th>Concepto 3</th>
-          <th>Concepto 4</th>
-          <th>Concepto 5</th>
-          <th>Concepto 6</th>
-          <th>Balance actual</th>
-          <th>Activo</th>
-          <th>Última venta</th>
+          {columnNames.map((column) => {
+            return <th key={nanoid(5)}>{column}</th>;
+          })}
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-          <td>Malcolm Lockyer</td>
-          <td>1961</td>
-        </tr>
-        <tr>
-          <td>Witchy Woman</td>
-          <td>The Eagles</td>
-          <td>1972</td>
-        </tr>
-        <tr>
-          <td>Shining Star</td>
-          <td>Earth, Wind, and Fire</td>
-          <td>1975</td>
-        </tr>
+        {companyData.map((row, index) => {
+          return (
+            <tr key={nanoid(5)}>
+              <RenderRow row={row} index={index} />
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

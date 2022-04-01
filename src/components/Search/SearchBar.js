@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Popover, Button } from 'antd';
+import { Popover } from 'antd';
+import Loupe from '../../assets/loupe.png';
 
 const SearchBar = ({
   filters,
@@ -7,13 +8,11 @@ const SearchBar = ({
   handleChangeStatus,
 }) => {
   const applyFilter = (e) => {
-    const { value } = e.target;
+    console.log('SII');
     const {
       target: { id },
     } = e;
-    if (id === 'search-value') {
-      handleSearchInput(value);
-    } else if (id === 'no-active' || id === 'active') {
+    if (id === 'no-active' || id === 'active') {
       handleChangeStatus(id);
     }
   };
@@ -39,7 +38,6 @@ const SearchBar = ({
         <div className="flex items-center gap-1">
           <input
             type="radio"
-            value="active"
             name="active"
             id="active"
             checked={filters.status === 'active'}
@@ -50,7 +48,6 @@ const SearchBar = ({
         <div className="flex items-center gap-1">
           <input
             type="radio"
-            value="no-active"
             name="no-active"
             id="no-active"
             checked={filters.status === 'no-active'}
@@ -63,17 +60,36 @@ const SearchBar = ({
   );
 
   return (
-    <div>
-      <input
+    <div className="search-bar-container">
+      {/* <input
         onChange={changeDelay}
         type="text"
         autoComplete="off"
         id="search-value"
         placeholder="Search"
-        className=""
-      />
-      <Popover placement="bottom" content={content} trigger="click">
-        <Button>Filtros</Button>
+        className="input-search"
+      /> */}
+
+      <div className="input-search">
+        <img src={Loupe} alt="lopue-icon" />
+        <input
+          onChange={changeDelay}
+          type="text"
+          autoComplete="off"
+          id="search-value"
+          placeholder="Search"
+        />
+      </div>
+
+      <Popover
+        placement="bottom"
+        content={content}
+        trigger="click"
+        overlayClassName="popover-filters"
+      >
+        <button className="filter-button" type="button">
+          Filtros
+        </button>
       </Popover>
     </div>
   );

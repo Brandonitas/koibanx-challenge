@@ -1,0 +1,22 @@
+.table-container {
+  margin: auto;
+  margin-top: 1rem;
+  table-layout: auto;
+  width: calc(100vw - 200px);
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+
+  thead {
+    background: #f9fbfc;
+  }
+
+  th {
+    padding: 1rem;
+  }
+
+  td {
+    padding: 1rem;
+    width: fit-content;
+  }
+}
