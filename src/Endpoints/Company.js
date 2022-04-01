@@ -1,10 +1,17 @@
-import { buildFormData } from '../utils/BuildFormData';
+import {
+  buildFiltersFormData,
+  buildSortFormData,
+} from '../utils/BuildFormData';
 import apiClient from './BaseClient';
 
-export const GET_COMMERCIAL_DATA = async (data) => {
-  if (data) {
-    const body = buildFormData(data);
+export const GET_COMMERCIAL_DATA = async (filters, querySortBy) => {
+  if (filters) {
+    const body = buildFiltersFormData(filters);
     console.log(body);
+  }
+  if (querySortBy) {
+    const bodySort = buildSortFormData(querySortBy);
+    console.log(bodySort);
   }
   //   try {
   //     return await apiClient({

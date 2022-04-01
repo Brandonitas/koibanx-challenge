@@ -7,35 +7,40 @@ import './CompanyDataView.scss';
 import fakeData from '../data/data.json';
 
 const CompanyDataView = () => {
-  const [filters, { handleSearchInput, handleChangeStatus }] =
-    useFilters();
+  const [
+    filters,
+    sortBy,
+    {
+      handleSearchInput,
+      handleChangeStatus,
+      handleUpdatePage,
+      handleSortComercio,
+      handleSortCuit,
+    },
+  ] = useFilters();
 
   const [companyData, setCompanyData] = useState(fakeData.data);
+  const [hasMoreData, setHasMoreData] = useState(false);
 
-  console.log('DD', fakeData);
-
-  const getData = (queryFilters) => {
-    console.log('SUBMIT', queryFilters);
-    GET_COMMERCIAL_DATA(queryFilters);
+  const getData = async (queryFilters, querySortBy) => {
+    console.log('SUBMIT', queryFilters, querySortBy);
+    const { data } = await GET_COMMERCIAL_DATA(
+      queryFilters,
+      querySortBy
+    );
+    if (filters.page === 1) {
+      setCompanyData(data);
+    } else {
+      setCompanyData((prev) => {
+        return [...prev, ...data];
+      });
+    }
+    setHasMoreData(data.length > 0);
   };
 
   useEffect(() => {
-    let filtersIsEmpty = true;
-    Object.entries(filters).forEach((filter) => {
-      const [, value] = filter;
-      if (value !== '') {
-        filtersIsEmpty = false;
-      }
-    });
-
-    if (!filtersIsEmpty) {
-      console.log('SEARCH WITH PARAMS');
-      getData(filters);
-    } else {
-      console.log('SEARCH EMPTY');
-      getData();
-    }
-  }, [filters]);
+    getData(filters, sortBy);
+  }, [filters, sortBy]);
 
   return (
     <>
@@ -44,7 +49,13 @@ const CompanyDataView = () => {
         handleSearchInput={handleSearchInput}
         handleChangeStatus={handleChangeStatus}
       />
-      <TableHOC companyData={companyData} />
+      <TableHOC
+        companyData={companyData}
+        handleUpdatePage={handleUpdatePage}
+        hasMoreData={hasMoreData}
+        handleSortComercio={handleSortComercio}
+        handleSortCuit={handleSortCuit}
+      />
     </>
   );
 };

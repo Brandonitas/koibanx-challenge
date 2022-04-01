@@ -20,3 +20,41 @@
     width: fit-content;
   }
 }
+
+.empty-state-container {
+  margin-bottom: 2rem;
+
+  .emtpy-state {
+    margin: auto;
+    margin-top: 1rem;
+    table-layout: auto;
+    width: calc(100vw - 200px);
+    height: 50px;
+    border-radius: 10px;
+
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(
+      to right,
+      #eeeeee 8%,
+      #dddddd 18%,
+      #eeeeee 33%
+    );
+    background-size: 1068px 104px;
+    position: relative;
+    border: 2px solid transparent !important;
+  }
+
+  @keyframes placeHolderShimmer {
+    0% {
+      background-position: -1068px 0;
+    }
+    100% {
+      background-position: 1068px 0;
+    }
+  }
+}
