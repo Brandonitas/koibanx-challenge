@@ -3,6 +3,7 @@ import Table from './Table';
 import './Table.scss';
 
 const TableHOC = ({
+  filters,
   companyData,
   handleUpdatePage,
   hasMoreData,
@@ -11,6 +12,7 @@ const TableHOC = ({
 }) => {
   return (
     <Table
+      filters={filters}
       companyData={companyData}
       handleUpdatePage={handleUpdatePage}
       hasMoreData={hasMoreData}

@@ -50,6 +50,7 @@ const CompanyDataView = () => {
         handleChangeStatus={handleChangeStatus}
       />
       <TableHOC
+        filters={filters}
         companyData={companyData}
         handleUpdatePage={handleUpdatePage}
         hasMoreData={hasMoreData}

@@ -10,7 +10,13 @@ export const buildFiltersFormData = (body) => {
       }
     }
   });
-  return JSON.stringify(tempBody);
+
+  const stringJson =
+    Object.keys(tempBody).length === 0
+      ? ''
+      : `q=${JSON.stringify(tempBody)}`;
+
+  return stringJson;
 };
 
 export const buildSortFormData = (body) => {
@@ -18,11 +24,15 @@ export const buildSortFormData = (body) => {
   Object.entries(body).forEach((element) => {
     const [key, value] = element;
     if (value !== '') {
-      console.log('element', element);
       tempBody.$orderby[key] = value;
     }
   });
-  return JSON.stringify(tempBody);
+
+  const stringJson =
+    Object.keys(tempBody.$orderby).length === 0
+      ? ''
+      : `&h=${JSON.stringify(tempBody)}`;
+  return stringJson;
 };
 
 // q={"$or":[{"search":{"$regex”: ”basic"}},{"search":{"$regex”: ”basic"}},{"search":{"$regex”: ”basic"}}]}

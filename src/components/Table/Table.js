@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const Table = ({
+  filters,
   companyData,
   handleUpdatePage,
   hasMoreData,
@@ -29,7 +30,7 @@ const Table = ({
   const fetchMoreData = () => {
     setTimeout(() => {
       console.log('FETCH MORE DATA');
-      handleUpdatePage((prev) => prev + 1);
+      handleUpdatePage(filters.page + 1);
     }, 2000);
   };
 

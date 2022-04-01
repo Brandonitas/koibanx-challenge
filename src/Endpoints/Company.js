@@ -4,15 +4,20 @@ import {
 } from '../utils/BuildFormData';
 import apiClient from './BaseClient';
 
-export const GET_COMMERCIAL_DATA = async (filters, querySortBy) => {
+export const GET_COMMERCIAL_DATA = async (filters, sortBy) => {
+  let queryFilters = '';
+  let querySortBy = '';
+  let finalQuery = '';
   if (filters) {
-    const body = buildFiltersFormData(filters);
-    console.log(body);
+    queryFilters = buildFiltersFormData(filters);
   }
-  if (querySortBy) {
-    const bodySort = buildSortFormData(querySortBy);
-    console.log(bodySort);
+  if (sortBy) {
+    querySortBy = buildSortFormData(sortBy);
   }
+
+  finalQuery = queryFilters + querySortBy;
+
+  console.log('FINAL QUERY', finalQuery);
   //   try {
   //     return await apiClient({
   //       url: 'commercials?q=',
