@@ -8,7 +8,10 @@
   overflow: hidden;
 
   thead {
-    background: #f9fbfc;
+    background: #f9f9f8;
+    tr {
+      color: #959595;
+    }
   }
 
   th {
@@ -18,6 +21,12 @@
   td {
     padding: 1rem;
     width: fit-content;
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #f7f7f7;
+    }
   }
 }
 

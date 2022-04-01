@@ -8,7 +8,7 @@ const SearchBar = ({
   handleChangeStatus,
 }) => {
   const applyFilter = (e) => {
-    console.log('SII');
+    console.log('ENTRE');
     const {
       target: { id },
     } = e;
@@ -17,6 +17,7 @@ const SearchBar = ({
     }
   };
 
+  // Automatic search when we stop typing
   const [timer, setTimer] = useState(null);
   const changeDelay = (e) => {
     if (timer) {
@@ -61,15 +62,6 @@ const SearchBar = ({
 
   return (
     <div className="search-bar-container">
-      {/* <input
-        onChange={changeDelay}
-        type="text"
-        autoComplete="off"
-        id="search-value"
-        placeholder="Search"
-        className="input-search"
-      /> */}
-
       <div className="input-search">
         <img src={Loupe} alt="lopue-icon" />
         <input

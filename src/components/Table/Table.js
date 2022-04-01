@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -15,17 +16,27 @@ const Table = ({
 }) => {
   const [columnNames, setColumnNames] = useState([]);
 
-  const handleGetKeys = () => {};
+  const handleGenerateColumsNames = () => {
+    const columns = Object.keys(companyData[0]);
+    setColumnNames(columns);
+  };
 
   useEffect(() => {
-    if (companyData) {
-      const columns = Object.keys(companyData[0]);
-      setColumnNames(columns);
+    // Make sure we have data to ganerate columns
+    if (companyData && companyData.length > 0) {
+      handleGenerateColumsNames();
     }
   }, [companyData]);
 
   const RenderRow = ({ row }) => {
     return columnNames.map((key) => {
+      if (key === 'Activo') {
+        return (
+          <td key={nanoid(5)}>
+            <div>{row[key] === 1 ? 'Activo' : 'No activo'}</div>
+          </td>
+        );
+      }
       return <td key={nanoid(5)}>{row[key]}</td>;
     });
   };
