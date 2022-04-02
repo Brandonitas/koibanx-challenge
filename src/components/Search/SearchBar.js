@@ -1,20 +1,37 @@
 import React, { useState } from 'react';
-import { Popover } from 'antd';
+import { Select } from 'antd';
+import { nanoid } from 'nanoid';
 import Loupe from '../../assets/loupe.png';
+
+const { Option } = Select;
 
 const SearchBar = ({
   filters,
   handleSearchInput,
-  handleChangeStatus,
+  handleChangeFilter,
 }) => {
-  const applyFilter = (e) => {
-    console.log('ENTRE');
-    const {
-      target: { id },
-    } = e;
-    if (id === 'no-active' || id === 'active') {
-      handleChangeStatus(id);
-    }
+  // Filters list and types. We can add more
+  const [filtersLists, setFiltersLists] = useState({
+    status: [
+      {
+        text: 'Activo',
+        id: 'active',
+      },
+      {
+        text: 'No activo',
+        id: 'no-active',
+      },
+    ],
+  });
+
+  const applyFilter = (value, filterKey) => {
+    console.log('VVV', value, filterKey);
+    const index = filtersLists[filterKey].findIndex((x) => {
+      return x.id === value;
+    });
+    const id = index === -1 ? '' : filtersLists[filterKey][index].id;
+    console.log(id);
+    handleChangeFilter(id);
   };
 
   // Automatic search when we stop typing
@@ -32,33 +49,17 @@ const SearchBar = ({
     );
   };
 
-  const content = (
-    <div>
-      <p className="font-bold">Status</p>
-      <div className="flex gap-4">
-        <div className="flex items-center gap-1">
-          <input
-            type="radio"
-            name="active"
-            id="active"
-            checked={filters.status === 'active'}
-            onChange={applyFilter}
-          />{' '}
-          Activo
-        </div>
-        <div className="flex items-center gap-1">
-          <input
-            type="radio"
-            name="no-active"
-            id="no-active"
-            checked={filters.status === 'no-active'}
-            onChange={applyFilter}
-          />{' '}
-          No activo
-        </div>
-      </div>
-    </div>
-  );
+  const getOptionsList = (filterKey) => {
+    const options = [];
+    filtersLists[filterKey].forEach((element) => {
+      options.push(
+        <Option key={element.id} value={element.id}>
+          {element.text}
+        </Option>
+      );
+    });
+    return options;
+  };
 
   return (
     <div className="search-bar-container">
@@ -72,17 +73,21 @@ const SearchBar = ({
           placeholder="Search"
         />
       </div>
-
-      <Popover
-        placement="bottom"
-        content={content}
-        trigger="click"
-        overlayClassName="popover-filters"
-      >
-        <button className="filter-button" type="button">
-          Filtros
-        </button>
-      </Popover>
+      {Object.keys(filtersLists).map((filterKey) => {
+        return (
+          <Select
+            size="large"
+            value={filters[filterKey] || null}
+            style={{ width: '100%', fontSize: '14px' }}
+            allowClear
+            key={nanoid(5)}
+            placeholder="Status"
+            onChange={(e) => applyFilter(e, filterKey)}
+          >
+            {getOptionsList(filterKey)}
+          </Select>
+        );
+      })}
     </div>
   );
 };

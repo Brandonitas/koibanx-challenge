@@ -24,7 +24,12 @@
 
     input {
       border: none;
-      width: 200px;
+      width: 250px;
+    }
+
+    input::placeholder {
+      color: #bfbfbf;
+      font-weight: 400;
     }
 
     input:focus {
@@ -32,7 +37,7 @@
     }
   }
 
-  .filter-button {
+  .filter-select {
     background: white;
     border-radius: 5px;
     border: 1px solid #e9e9e9;
@@ -40,23 +45,8 @@
   }
 }
 
-.popover-filters {
-  padding-top: 0px !important;
+.ant-select-single.ant-select-lg:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border-radius: 5px;
   border: 1px solid #e9e9e9;
-  border-radius: 5px !important;
-
-  .ant-popover-inner {
-    border-radius: 5px !important;
-    width: auto !important;
-    overflow: auto;
-  }
-
-  .ant-popover-inner-content {
-    padding: 16px !important;
-    //height: inherit;
-  }
-
-  .ant-popover-arrow {
-    display: none;
-  }
 }

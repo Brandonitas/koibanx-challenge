@@ -45,7 +45,7 @@ const Table = ({
     setTimeout(() => {
       console.log('FETCH MORE DATA');
       handleUpdatePage(filters.page + 1);
-    }, 2000);
+    }, 500);
   };
 
   const handleSorteColumn = (e) => {

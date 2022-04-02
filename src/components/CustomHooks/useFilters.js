@@ -20,24 +20,15 @@ const useFilters = () => {
     if (input) {
       auxFilters.search = input;
     }
-    console.log('AUX', auxFilters);
     setFilters(auxFilters);
   };
 
-  const handleChangeStatus = (status) => {
+  const handleChangeFilter = (status) => {
     const auxFilters = {
       ...filters,
     };
 
-    // If already selected clean status
-    if (auxFilters.status === status) {
-      auxFilters.status = '';
-    } else if (status) {
-      auxFilters.status = status;
-    }
-
-    console.log('AUX', auxFilters);
-
+    auxFilters.status = status;
     setFilters(auxFilters);
   };
 
@@ -103,7 +94,7 @@ const useFilters = () => {
     sortBy,
     {
       handleSearchInput,
-      handleChangeStatus,
+      handleChangeFilter,
       handleUpdatePage,
       handleSortComercio,
       handleSortCuit,

@@ -5,13 +5,13 @@ import './SearchBar.scss';
 function SearchBarHOC({
   filters,
   handleSearchInput,
-  handleChangeStatus,
+  handleChangeFilter,
 }) {
   return (
     <SearchBar
       filters={filters}
       handleSearchInput={handleSearchInput}
-      handleChangeStatus={handleChangeStatus}
+      handleChangeFilter={handleChangeFilter}
     />
   );
 }

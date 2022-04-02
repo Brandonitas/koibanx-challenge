@@ -12,7 +12,7 @@ const CompanyDataView = () => {
     sortBy,
     {
       handleSearchInput,
-      handleChangeStatus,
+      handleChangeFilter,
       handleUpdatePage,
       handleSortComercio,
       handleSortCuit,
@@ -43,10 +43,11 @@ const CompanyDataView = () => {
 
   return (
     <>
+      <div className="text-2xl font-bold title">Comercios</div>
       <SearchBarHOC
         filters={filters}
         handleSearchInput={handleSearchInput}
-        handleChangeStatus={handleChangeStatus}
+        handleChangeFilter={handleChangeFilter}
       />
       <TableHOC
         filters={filters}
