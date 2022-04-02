@@ -10,7 +10,7 @@ function SearchBarHOC({
   handleSearchInput,
   handleChangeFilter,
 }) {
-  // Filters list and types. We can add more
+  // Filters list and types. We can add more if needed
   const [filtersLists, setFiltersLists] = useState({
     status: [
       {
@@ -24,18 +24,19 @@ function SearchBarHOC({
     ],
   });
 
-  const applyFilter = (value, filterKey) => {
+  // On change select filter
+  const handleApplyFilter = (value, filterKey) => {
     const index = filtersLists[filterKey].findIndex((x) => {
       return x.id === value;
     });
     const id = index === -1 ? '' : filtersLists[filterKey][index].id;
-    console.log(id);
     handleChangeFilter(id);
   };
 
   // Automatic search when we stop typing
   const [timer, setTimer] = useState(null);
-  const changeDelay = (e) => {
+  const handleChangeDelay = (e) => {
+    // Only clear timeout when user still typing
     if (timer) {
       clearTimeout(timer);
       setTimer(null);
@@ -48,6 +49,7 @@ function SearchBarHOC({
     );
   };
 
+  // Get options to use in select filters component
   const getOptionsList = (filterKey) => {
     const options = [];
     filtersLists[filterKey].forEach((element) => {
@@ -66,8 +68,8 @@ function SearchBarHOC({
       handleSearchInput={handleSearchInput}
       handleChangeFilter={handleChangeFilter}
       filtersLists={filtersLists}
-      applyFilter={applyFilter}
-      changeDelay={changeDelay}
+      handleApplyFilter={handleApplyFilter}
+      handleChangeDelay={handleChangeDelay}
       getOptionsList={getOptionsList}
     />
   );

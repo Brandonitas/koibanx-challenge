@@ -2,25 +2,17 @@
 import React, { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import DownArrow from '../../assets/down-arrow.png';
-import UpArrow from '../../assets/up-arrow.png';
 
 const Table = ({
-  filters,
-  sortBy,
   companyData,
-  handleUpdatePage,
   hasMoreData,
-  handleSortComercio,
-  handleSortCuit,
+  handleGenerateColumsNames,
+  RenderRow,
+  fetchMoreData,
+  handleSortColumn,
+  SortIndicator,
+  columnNames,
 }) => {
-  const [columnNames, setColumnNames] = useState([]);
-
-  const handleGenerateColumsNames = () => {
-    const columns = Object.keys(companyData[0]);
-    setColumnNames(columns);
-  };
-
   useEffect(() => {
     // Make sure we have data to ganerate columns
     if (companyData && companyData.length > 0) {
@@ -28,68 +20,11 @@ const Table = ({
     }
   }, [companyData]);
 
-  const RenderRow = ({ row }) => {
-    return columnNames.map((key) => {
-      if (key === 'Activo') {
-        return (
-          <td key={nanoid(5)}>
-            <div>{row[key] === 1 ? 'Activo' : 'No activo'}</div>
-          </td>
-        );
-      }
-      return <td key={nanoid(5)}>{row[key]}</td>;
-    });
-  };
-
-  const fetchMoreData = () => {
-    setTimeout(() => {
-      console.log('FETCH MORE DATA');
-      handleUpdatePage(filters.page + 1);
-    }, 500);
-  };
-
-  const handleSorteColumn = (e) => {
-    switch (e.target.innerText) {
-      case 'Comercio':
-        handleSortComercio();
-        break;
-      case 'CUIT':
-        handleSortCuit();
-        break;
-      default:
-        break;
-    }
-  };
-
-  const SortIndicator = ({ column }) => {
-    const sortedColumns = ['Comercio', 'CUIT'];
-    const sortedColumnsWithIDs = {
-      Comercio: 'comercio',
-      CUIT: 'cuit',
-    };
-    const isSorted = sortedColumns.includes(column);
-
-    if (isSorted) {
-      const sorteValue = sortBy[sortedColumnsWithIDs[column]];
-      if (sorteValue === 1 || sorteValue === -1) {
-        return (
-          <img
-            src={sorteValue === 1 ? UpArrow : DownArrow}
-            alt="down-arrow"
-            style={{ height: '12px' }}
-          />
-        );
-      }
-    }
-
-    return null;
-  };
-
   return (
     <InfiniteScroll
       dataLength={companyData.length}
       next={fetchMoreData}
-      hasMore
+      hasMore={hasMoreData}
       loader={<EmptyState />}
       scrollThreshold="90%"
     >
@@ -99,7 +34,7 @@ const Table = ({
             {columnNames.map((column) => {
               return (
                 <th
-                  onClick={handleSorteColumn}
+                  onClick={handleSortColumn}
                   key={nanoid(5)}
                   name={column}
                   className="cursor-pointer"

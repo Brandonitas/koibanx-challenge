@@ -3,13 +3,11 @@ import { Select } from 'antd';
 import { nanoid } from 'nanoid';
 import Loupe from '../../assets/loupe.png';
 
-const { Option } = Select;
-
 const SearchBar = ({
   filters,
   filtersLists,
-  applyFilter,
-  changeDelay,
+  handleApplyFilter,
+  handleChangeDelay,
   getOptionsList,
 }) => {
   return (
@@ -17,7 +15,7 @@ const SearchBar = ({
       <div className="input-search">
         <img src={Loupe} alt="lopue-icon" />
         <input
-          onChange={changeDelay}
+          onChange={handleChangeDelay}
           type="text"
           autoComplete="off"
           id="search-value"
@@ -32,8 +30,10 @@ const SearchBar = ({
             style={{ width: '200px', fontSize: '14px' }}
             allowClear
             key={nanoid(5)}
-            placeholder="Status"
-            onChange={(e) => applyFilter(e, filterKey)}
+            placeholder={
+              filterKey.charAt(0).toUpperCase() + filterKey.slice(1)
+            }
+            onChange={(e) => handleApplyFilter(e, filterKey)}
           >
             {getOptionsList(filterKey)}
           </Select>

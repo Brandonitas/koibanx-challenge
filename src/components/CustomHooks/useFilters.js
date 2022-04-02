@@ -17,9 +17,8 @@ const useFilters = () => {
       ...filters,
     };
 
-    if (input) {
-      auxFilters.search = input;
-    }
+    auxFilters.search = input;
+
     setFilters(auxFilters);
   };
 
@@ -41,51 +40,26 @@ const useFilters = () => {
     setFilters(auxFilters);
   };
 
-  const handleSortComercio = () => {
+  const handleSort = (id) => {
     const auxSortBy = {
       ...sortBy,
     };
 
-    switch (auxSortBy.comercio) {
+    switch (auxSortBy[id]) {
       case '':
-        auxSortBy.comercio = 1;
+        auxSortBy[id] = 1;
         break;
       case 1:
-        auxSortBy.comercio = -1;
+        auxSortBy[id] = -1;
         break;
       case -1:
-        auxSortBy.comercio = '';
+        auxSortBy[id] = '';
         break;
 
       default:
-        auxSortBy.comercio = '';
+        auxSortBy[id] = '';
         break;
     }
-
-    setSortBy(auxSortBy);
-  };
-
-  const handleSortCuit = () => {
-    const auxSortBy = {
-      ...sortBy,
-    };
-
-    switch (auxSortBy.cuit) {
-      case '':
-        auxSortBy.cuit = 1;
-        break;
-      case 1:
-        auxSortBy.cuit = -1;
-        break;
-      case -1:
-        auxSortBy.cuit = '';
-        break;
-
-      default:
-        auxSortBy.cuit = '';
-        break;
-    }
-
     setSortBy(auxSortBy);
   };
 
@@ -96,8 +70,7 @@ const useFilters = () => {
       handleSearchInput,
       handleChangeFilter,
       handleUpdatePage,
-      handleSortComercio,
-      handleSortCuit,
+      handleSort,
     },
   ];
 };

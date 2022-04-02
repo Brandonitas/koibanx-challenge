@@ -15,19 +15,23 @@ const CompanyDataView = () => {
       handleSearchInput,
       handleChangeFilter,
       handleUpdatePage,
-      handleSortComercio,
-      handleSortCuit,
+      handleSort,
     },
   ] = useFilters();
 
+  // When API is available change companyData value to empty array
   const [companyData, setCompanyData] = useState(fakeData.data);
-  const [hasMoreData, setHasMoreData] = useState(false);
 
+  // When API is available change hasMoreData value to false
+  const [hasMoreData, setHasMoreData] = useState(true);
+
+  // Get data from API
   const getData = async (queryFilters, querySortBy) => {
     const { data } = await GET_COMMERCIAL_DATA(
       queryFilters,
       querySortBy
     );
+
     if (filters.page === 1) {
       setCompanyData(data);
     } else {
@@ -38,6 +42,7 @@ const CompanyDataView = () => {
     setHasMoreData(data.length > 0);
   };
 
+  // Make request when filters or sortBy values change
   useEffect(() => {
     getData(filters, sortBy);
   }, [filters, sortBy]);
@@ -56,8 +61,7 @@ const CompanyDataView = () => {
         companyData={companyData}
         handleUpdatePage={handleUpdatePage}
         hasMoreData={hasMoreData}
-        handleSortComercio={handleSortComercio}
-        handleSortCuit={handleSortCuit}
+        handleSort={handleSort}
       />
     </>
   );
