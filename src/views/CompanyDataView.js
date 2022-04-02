@@ -7,6 +7,7 @@ import './CompanyDataView.scss';
 import fakeData from '../data/data.json';
 
 const CompanyDataView = () => {
+  // Custom hook to get and update filters
   const [
     filters,
     sortBy,
