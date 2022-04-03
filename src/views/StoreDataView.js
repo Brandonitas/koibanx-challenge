@@ -46,7 +46,6 @@ const StoreDataView = () => {
 
   return (
     <>
-      <p>{localStorage.getItem('finalquery')}</p>
       <div className="text-2xl font-bold title">Comercios</div>
       <SearchBarHOC
         filters={filters}

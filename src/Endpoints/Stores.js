@@ -19,7 +19,6 @@ export const GET_COMMERCIAL_DATA = async (filters, sortBy) => {
   finalQuery = `${queryFilters}${querySortBy}`;
 
   console.log('FINAL QUERY', `${API}?${finalQuery}`);
-  localStorage.setItem('finalquery', `${API}?${finalQuery}`);
 
   // When API is available uncomment this lines
   //   try {
