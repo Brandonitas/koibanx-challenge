@@ -22,24 +22,21 @@ const CompanyDataView = () => {
   // When API is available change companyData value to empty array
   const [companyData, setCompanyData] = useState(fakeData.data);
 
-  // When API is available change hasMoreData value to false
-  const [hasMoreData, setHasMoreData] = useState(true);
+  // Data for our pagination component
+  const [totalData, setTotalData] = useState(fakeData.total);
+  const [dataPerPage, setDataPerPage] = useState(
+    fakeData.rowsPerPage
+  );
 
   // Get data from API
   const getData = async (queryFilters, querySortBy) => {
-    const { data } = await GET_COMMERCIAL_DATA(
+    const requestData = await GET_COMMERCIAL_DATA(
       queryFilters,
       querySortBy
     );
 
-    if (filters.page === 1) {
-      setCompanyData(data);
-    } else {
-      setCompanyData((prev) => {
-        return [...prev, ...data];
-      });
-    }
-    setHasMoreData(data.length > 0);
+    // When API is available uncomment this line
+    // setCompanyData(requestData.data);
   };
 
   // Make request when filters or sortBy values change
@@ -60,8 +57,9 @@ const CompanyDataView = () => {
         sortBy={sortBy}
         companyData={companyData}
         handleUpdatePage={handleUpdatePage}
-        hasMoreData={hasMoreData}
         handleSort={handleSort}
+        totalData={totalData}
+        dataPerPage={dataPerPage}
       />
     </>
   );

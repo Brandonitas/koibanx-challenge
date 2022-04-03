@@ -10,8 +10,9 @@ const TableHOC = ({
   sortBy,
   companyData,
   handleUpdatePage,
-  hasMoreData,
   handleSort,
+  totalData,
+  dataPerPage,
 }) => {
   const [columnNames, setColumnNames] = useState([]);
   const [sortedColumnsWithIDs, setSortedColumnsWithIDs] = useState({
@@ -39,12 +40,8 @@ const TableHOC = ({
     });
   };
 
-  // Inifinite scroll functionality
-  const fetchMoreData = () => {
-    setTimeout(() => {
-      console.log('FETCH MORE DATA');
-      handleUpdatePage(filters.page + 1);
-    }, 500);
+  const handleChangePage = (page) => {
+    handleUpdatePage(page);
   };
 
   // onClick Sort
@@ -76,13 +73,14 @@ const TableHOC = ({
   return (
     <Table
       companyData={companyData}
-      hasMoreData={hasMoreData}
       handleGenerateColumsNames={handleGenerateColumsNames}
       RenderRow={RenderRow}
-      fetchMoreData={fetchMoreData}
+      handleChangePage={handleChangePage}
       handleSortColumn={handleSortColumn}
       SortIndicator={SortIndicator}
       columnNames={columnNames}
+      totalData={totalData}
+      dataPerPage={dataPerPage}
     />
   );
 };
