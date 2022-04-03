@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import { Pagination } from 'antd';
 
 const Table = ({
-  companyData,
+  storeData,
   handleGenerateColumsNames,
   RenderRow,
   handleChangePage,
@@ -16,7 +16,7 @@ const Table = ({
 }) => {
   useEffect(() => {
     // Make sure we have data to ganerate columns
-    if (companyData && companyData.length > 0) {
+    if (storeData && storeData.length > 0) {
       handleGenerateColumsNames();
     }
   }, []);
@@ -45,7 +45,7 @@ const Table = ({
             </tr>
           </thead>
           <tbody>
-            {companyData.map((row) => {
+            {storeData.map((row) => {
               return (
                 <tr key={nanoid(5)}>
                   <RenderRow row={row} />

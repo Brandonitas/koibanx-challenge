@@ -2,6 +2,7 @@ import {
   buildFiltersFormData,
   buildSortFormData,
 } from '../utils/BuildFormData';
+import { API } from '../Variables/Variables';
 import apiClient from './BaseClient';
 
 export const GET_COMMERCIAL_DATA = async (filters, sortBy) => {
@@ -15,16 +16,16 @@ export const GET_COMMERCIAL_DATA = async (filters, sortBy) => {
     querySortBy = buildSortFormData(sortBy);
   }
 
-  finalQuery = queryFilters + querySortBy;
+  finalQuery = `${queryFilters}${querySortBy}`;
 
-  console.log('FINAL QUERY', finalQuery);
+  console.log('FINAL QUERY', `${API}?${finalQuery}`);
+  localStorage.setItem('finalquery', `${API}?${finalQuery}`);
 
   // When API is available uncomment this lines
   //   try {
   //     return await apiClient({
-  //       url: 'commercials?q=',
+  //       url: `?${finalQuery}`,
   //       method: 'get',
-  //       data,
   //     });
   //   } catch (error) {
   //     throw new Error(error);

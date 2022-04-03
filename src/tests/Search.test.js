@@ -15,7 +15,6 @@ import {
 
 describe('Search test', () => {
   let component;
-
   beforeEach(() => {
     component = render(
       <SearchBar

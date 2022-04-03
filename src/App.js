@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import CompanyDataView from './views/CompanyDataView';
+import StoreDataView from './views/StoreDataView';
 
 function App() {
   return (
     <div className="App">
-      <CompanyDataView />
+      <StoreDataView />
     </div>
   );
 }

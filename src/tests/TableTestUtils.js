@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-export const companyData = [
+export const storeData = [
   {
     ID: 1,
     Comercio: 'Mynte',
@@ -18,7 +18,7 @@ export const companyData = [
 ];
 
 export const handleGenerateColumsNames = () => {};
-export const columns = Object.keys(companyData[0]);
+export const columns = Object.keys(storeData[0]);
 
 export const RenderRow = ({ row }) => {
   return columns.map((key) => {

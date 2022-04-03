@@ -5,7 +5,7 @@ import { prettyDOM } from '@testing-library/react';
 import Table from '../components/Table/Table';
 import {
   columns,
-  companyData,
+  storeData,
   handleChangePage,
   handleGenerateColumsNames,
   handleSortColumn,
@@ -17,7 +17,7 @@ describe('Table test', () => {
   test('Should render our Table component', () => {
     const component = render(
       <Table
-        companyData={companyData}
+        storeData={storeData}
         handleGenerateColumsNames={handleGenerateColumsNames}
         RenderRow={RenderRow}
         handleChangePage={handleChangePage}
@@ -45,7 +45,7 @@ describe('Table test', () => {
 
     const component = render(
       <Table
-        companyData={companyData}
+        storeData={storeData}
         handleGenerateColumsNames={handleGenerateColumsNames}
         RenderRow={RenderRow}
         handleChangePage={handleChangePage}

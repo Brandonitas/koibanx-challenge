@@ -8,7 +8,7 @@ import UpArrow from '../../assets/up-arrow.png';
 const TableHOC = ({
   filters,
   sortBy,
-  companyData,
+  storeData,
   handleUpdatePage,
   handleSort,
   totalData,
@@ -22,7 +22,7 @@ const TableHOC = ({
 
   // Dynamically generate column names
   const handleGenerateColumsNames = () => {
-    const columns = Object.keys(companyData[0]);
+    const columns = Object.keys(storeData[0]);
     setColumnNames(columns);
   };
 
@@ -72,7 +72,7 @@ const TableHOC = ({
 
   return (
     <Table
-      companyData={companyData}
+      storeData={storeData}
       handleGenerateColumsNames={handleGenerateColumsNames}
       RenderRow={RenderRow}
       handleChangePage={handleChangePage}
