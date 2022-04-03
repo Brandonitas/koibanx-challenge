@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { Pagination } from 'antd';
 
@@ -55,12 +55,14 @@ const Table = ({
           </tbody>
         </table>
         <div className="mt-4 flex justify-center">
-          <Pagination
-            total={totalData}
-            showSizeChanger={false}
-            pageSize={dataPerPage}
-            onChange={handleChangePage}
-          />
+          {totalData && totalData > 0 && (
+            <Pagination
+              total={totalData}
+              showSizeChanger={false}
+              pageSize={dataPerPage}
+              onChange={handleChangePage}
+            />
+          )}
         </div>
       </div>
     </>
