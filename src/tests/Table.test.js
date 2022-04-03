@@ -41,9 +41,7 @@ describe('Table test', () => {
   });
 
   test('Should click and sort our Table component ', () => {
-    const mockHandlers = jest.fn((element) => {
-      console.log('ELEMENT', element);
-    });
+    const mockHandlers = jest.fn();
 
     const component = render(
       <Table
