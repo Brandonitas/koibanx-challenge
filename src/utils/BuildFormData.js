@@ -34,6 +34,3 @@ export const buildSortFormData = (body) => {
       : `&h=${JSON.stringify(tempBody)}`;
   return stringJson;
 };
-
-// q={"$or":[{"search":{"$regex”: ”basic"}},{"search":{"$regex”: ”basic"}},{"search":{"$regex”: ”basic"}}]}
-// q={"search":{"$regex”: ”basic"}}

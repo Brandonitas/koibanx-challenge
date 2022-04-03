@@ -18,6 +18,8 @@ export const GET_COMMERCIAL_DATA = async (filters, sortBy) => {
   finalQuery = queryFilters + querySortBy;
 
   console.log('FINAL QUERY', finalQuery);
+
+  // When API is available uncomment this lines
   //   try {
   //     return await apiClient({
   //       url: 'commercials?q=',
