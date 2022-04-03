@@ -49,6 +49,17 @@ function SearchBarHOC({
     );
   };
 
+  const handleOnBlur = (e) => {
+    if (timer) {
+      clearTimeout(timer);
+      setTimer(null);
+    }
+    const { value } = e.target;
+    if (filters.search !== value) {
+      handleSearchInput(value);
+    }
+  };
+
   // Get options to use in select filters component
   const getOptionsList = (filterKey) => {
     const options = [];
@@ -65,11 +76,10 @@ function SearchBarHOC({
   return (
     <SearchBar
       filters={filters}
-      handleSearchInput={handleSearchInput}
-      handleChangeFilter={handleChangeFilter}
       filtersLists={filtersLists}
       handleApplyFilter={handleApplyFilter}
       handleChangeDelay={handleChangeDelay}
+      handleOnBlur={handleOnBlur}
       getOptionsList={getOptionsList}
     />
   );

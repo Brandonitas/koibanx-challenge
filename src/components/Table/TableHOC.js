@@ -60,7 +60,7 @@ const TableHOC = ({
         return (
           <img
             src={sorteValue === 1 ? UpArrow : DownArrow}
-            alt="down-arrow"
+            alt={sorteValue === 1 ? 'up-arrow' : 'down-arrow'}
             style={{ height: '12px' }}
           />
         );

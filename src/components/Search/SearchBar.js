@@ -8,6 +8,7 @@ const SearchBar = ({
   filtersLists,
   handleApplyFilter,
   handleChangeDelay,
+  handleOnBlur,
   getOptionsList,
 }) => {
   return (
@@ -20,6 +21,7 @@ const SearchBar = ({
           autoComplete="off"
           id="search-value"
           placeholder="Search"
+          onBlur={handleOnBlur}
         />
       </div>
       {Object.keys(filtersLists).map((filterKey) => {
