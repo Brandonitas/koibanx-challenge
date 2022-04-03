@@ -1,5 +1,7 @@
 ## Koibanx Challenge
 
+[Demo](https://koibanx-challenge.netlify.app/)
+
 An application that filter and sort store data with React. The final query is printed in the console.
 
 ## Project Status
