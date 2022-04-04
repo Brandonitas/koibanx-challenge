@@ -27,8 +27,9 @@ export const handleApplyFilter = (value, filterKey) => {
   const index = filtersLists[filterKey].findIndex((x) => {
     return x.id === value;
   });
-  const id = index === -1 ? '' : filtersLists[filterKey][index].id;
-  handleChangeFilter(id);
+  const newValue =
+    index === -1 ? '' : filtersLists[filterKey][index].id;
+  handleChangeFilter(filterKey, newValue);
 };
 export const handleChangeDelay = () => {};
 export const getOptionsList = (filterKey) => {

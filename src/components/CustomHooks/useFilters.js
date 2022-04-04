@@ -22,12 +22,12 @@ const useFilters = () => {
     setFilters(auxFilters);
   };
 
-  const handleChangeFilter = (status) => {
+  const handleChangeFilter = (filterKey, value) => {
     const auxFilters = {
       ...filters,
     };
 
-    auxFilters.status = status;
+    auxFilters[filterKey] = value;
     setFilters(auxFilters);
   };
 
