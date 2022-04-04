@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import Table from './Table';
 import './Table.scss';
@@ -6,7 +6,6 @@ import DownArrow from '../../assets/down-arrow.png';
 import UpArrow from '../../assets/up-arrow.png';
 
 const TableHOC = ({
-  filters,
   sortBy,
   storeData,
   handleUpdatePage,
@@ -25,6 +24,13 @@ const TableHOC = ({
     const columns = Object.keys(storeData[0]);
     setColumnNames(columns);
   };
+
+  useEffect(() => {
+    // Make sure we have data to ganerate columns
+    if (storeData && storeData.length > 0) {
+      handleGenerateColumsNames();
+    }
+  }, []);
 
   // Print each row with data
   const RenderRow = ({ row }) => {
@@ -73,7 +79,6 @@ const TableHOC = ({
   return (
     <Table
       storeData={storeData}
-      handleGenerateColumsNames={handleGenerateColumsNames}
       RenderRow={RenderRow}
       handleChangePage={handleChangePage}
       handleSortColumn={handleSortColumn}

@@ -53,7 +53,6 @@ const StoreDataView = () => {
         handleChangeFilter={handleChangeFilter}
       />
       <TableHOC
-        filters={filters}
         sortBy={sortBy}
         storeData={storeData}
         handleUpdatePage={handleUpdatePage}

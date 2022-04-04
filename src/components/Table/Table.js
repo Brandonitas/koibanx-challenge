@@ -5,7 +5,6 @@ import { Pagination } from 'antd';
 
 const Table = ({
   storeData,
-  handleGenerateColumsNames,
   RenderRow,
   handleChangePage,
   handleSortColumn,
@@ -14,13 +13,6 @@ const Table = ({
   totalData,
   dataPerPage,
 }) => {
-  useEffect(() => {
-    // Make sure we have data to ganerate columns
-    if (storeData && storeData.length > 0) {
-      handleGenerateColumsNames();
-    }
-  }, []);
-
   return (
     <>
       <div className="table-main-container">
